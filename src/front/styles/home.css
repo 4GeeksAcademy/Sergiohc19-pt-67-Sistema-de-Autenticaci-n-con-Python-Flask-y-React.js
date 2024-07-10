@@ -1,7 +1,96 @@
-/*
-    home.css: This website contains selectors only used in home.css
+body {
+    background-color: black;
+    background-image: url(https://e0.pxfuel.com/wallpapers/804/170/desktop-wallpaper-star-wars-star-background-best-background-star-wars-universe.jpg);
+}
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+h2 {
+    font-size: 50px;
+    font-weight: bolder;
+    transition: .3s linear;
+    color: transparent;
+    -webkit-text-stroke: 2px rgb(255, 196, 0);
+    background-image: linear-gradient(to left, rgb(255, 196, 0), rgb(179, 139, 8), black, rgb(35, 31, 31));
+    -webkit-background-clip: text;
+    animation: move 30s linear infinite;
+}
+
+@keyframes move {
+    100% {
+        background-position: 2000px 0;
+    }
+}
+
+
+h1:hover {
+    color: red;
+    text-shadow: 0 0 10 rgba(red, green, blue, alpha) 0 0 20 rgba(255, 0, 0, .5) 0 0 40 rgba(255, 0, 0, .5) 0 0 80 rgba(255, 0, 0, .5) 0 0 160 rgba(255, 0, 0, .5) 0 0 320 rgba(255, 0, 0, .5);
+}
+
+
+.btn-info {
+    font-size: 30px;
+    text-decoration: none;
+    font-weight: bolder;
+    filter: brightness(300%);
+    filter: contrast(300%);
+    color: rgb(179, 139, 8);
+
+}
+
+iframe {
+    margin-inline: 20px;
+}
+
+.carousel {
+    width: 400px;
+}
+
+.vehicles {
+    margin-left: 13rem;
+    padding-block: 30px;
+}
+
+.planets {
+    margin-left: 12rem;
+    padding-block: 30px;
+}
+
+
+.characters {
+    margin-left: 9rem;
+    padding-block: 30px;
+}
+
+.carousel-item {
+    width: 400px;
+    height: 400px;
+}
+
+nav {
+    background-color: black;
+}
+
+.like {
+    font-weight: bold;
+    border-radius: 20px;
+    margin-left: 10px;
+    padding: 0;
+    width: 0;
+    height: 0;
+    color: grey;
+    border-style: none;
+    transition: transform 30s ease-in-out;
+}
+
+.like:active {
+    color: red;
+    transform: scale(1.5);
+    border-radius: 20px;
+    margin-left: 10px;
+    padding: 0;
+    border-style: none;
+}
+
+.like:visited {
+    color: red;
+}
