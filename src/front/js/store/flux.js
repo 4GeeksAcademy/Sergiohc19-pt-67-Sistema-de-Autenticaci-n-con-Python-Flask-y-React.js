@@ -15,6 +15,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 
 		actions: {
+
+			login: async (email, password) => {
+				try {
+					const response = await fetch("https://bookish-memory-x5r9p7vxrw7xh9pp9-3001.app.github.dev/login", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify({
+							"email": email,
+							"password": password
+						})
+					});
+
+					const data = await response.json();
+					console.log(data);
+				} catch (error) {
+					// Aquí está el bloque catch, actualmente vacío
+				}
+			},
+
+
+
 			getCharacters: async () => {
 				const res = await fetch("https://www.swapi.tech/api/people/")
 				const data = await res.json()
@@ -44,14 +67,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			getMessage: async () => {
-				try{
+				try {
 					// fetching data from the backend
 					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
 					return data;
-				}catch(error){
+				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
 			},
@@ -95,7 +118,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			addFavoritsPlanets: async (id, name) => {
 				const { planetsfavorist } = getStore()
-				setStore({planetsfavorist: [...planetsfavorist, { id, name }] })
+				setStore({ planetsfavorist: [...planetsfavorist, { id, name }] })
 			},
 
 

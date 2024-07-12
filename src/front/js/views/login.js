@@ -8,27 +8,36 @@ import { PlanetsInfo } from "./planetsInfo.js"
 
 export const Login = () => {
 
+    const { actions } = useContext(Context)
+
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const handleLogin = (e) => {
+        e.preventDefault()
+        actions.login(email, password)
+    }
+
 
     return (
 
-        <form className="form-login mt-5">
+        <form className="form-login mt-5" onSubmit={handleLogin}          >
             <div className="mb-3">
                 <label forhtml="exampleInputEmail1" className="form-label">Email address</label>
-                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                <input value={email} onChange={(e) => setEmail(e.target.value)}
+                    type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
 
             </div>
             <div className="mb-3">
                 <label forhtml="exampleInputPassword1" className="form-label">Password</label>
-                <input type="password" className="form-control" id="exampleInputPassword1" />
+                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
             </div>
-            <div className="mb-3 form-check">
-                <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                <label className="form-check-label" forhtml="exampleCheck1">Check me out</label>
-            </div>
-            <div className="d-flex justify-content-center">
-                <Link to="/home"> <button type="submit" className="btn btn-success btn-lg w-100">Log in
 
-                </button></Link>
+            <div className="d-flex justify-content-center">
+                <button
+                    type="submit" className="btn btn-success btn-lg w-100">Log in
+
+                </button>
             </div>
         </form>
 
