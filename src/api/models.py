@@ -48,7 +48,7 @@ class Courses(db.Model):
         id = db.Column(db.Integer, primary_key=True)
         name = db.Column(db.String(120), unique=True, nullable=False)
         description = db.Column(db.String(120), unique=True, nullable=False)
-        price = db.Column(db.Enum(120), unique=True, nullable=False)
+        price = db.Column(db.String(120), unique=True, nullable=False)
         
         def serialize(self):
             return {
@@ -62,7 +62,7 @@ class Orders(db.Model):
         id = db.Column(db.Integer, primary_key=True)
         methods_of_payment = db.Column(db.String(120), unique=True, nullable=False)
         payment_date = db.Column(db.String(120), unique=True, nullable=False)
-        total = db.Column(db.Enum(120), unique=True, nullable=False)
+        total = db.Column(db.String(120), unique=True, nullable=False)
         status = db.Column(db.String(120), unique=True, nullable=False)
 
         def serialize(self):
@@ -76,9 +76,9 @@ class Orders(db.Model):
 
 class Order_Items(db.Model):
             id = db.Column(db.Integer, primary_key=True)
-            quantity = db.Column(db.Enum(120), unique=True, nullable=False)
+            quantity = db.Column(db.String(120), unique=True, nullable=False)
             course_id = db.Column(db.String(120), unique=True, nullable=False)
-            order_id = db.Column(db.Enum(120), unique=True, nullable=False)
+            order_id = db.Column(db.String(120), unique=True, nullable=False)
            
 
             def serialize(self):
