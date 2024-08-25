@@ -2,6 +2,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			users: [],
 			characters: [],
 			vehicles: [],
 			planets: [],
@@ -12,30 +13,75 @@ const getState = ({ getStore, getActions, setStore }) => {
 			phothocharacters: {},
 			infovehicles: {},
 			infoplanets: {},
+			token: localStorage.getItem("jwt-token") || null, // Inicializa el token desde localStorage
 		},
 
 		actions: {
 
+
 			login: async (email, password) => {
 				try {
-					const response = await fetch("https://bookish-memory-x5r9p7vxrw7xh9pp9-3001.app.github.dev/login", {
+					const response = await fetch(process.env.BACKEND_URL + "/api/login", {
 						method: "POST",
+						body: JSON.stringify({ email, password }),
 						headers: {
 							"Content-Type": "application/json"
-						},
-						body: JSON.stringify({
-							"email": email,
-							"password": password
-						})
+						}
 					});
-
 					const data = await response.json();
-					console.log(data);
-				} catch (error) {
-					// Aquí está el bloque catch, actualmente vacío
+					console.log(data)
+
+					if (response.ok) {
+						localStorage.setItem("jwt-token", data.access_token);
+						setStore({ token: data.access_token });
+						return true
+
+					} else {
+						console.log("Login failed:", data.message);
+						return false;
+					}
+				} catch (e) {
+					console.log("Error during login:", e);
+					return false;
 				}
 			},
 
+			createUser: async (email, password, name, lastname) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "/api/registration", {
+						method: "POST",
+						body: JSON.stringify({
+							email: email,
+							password: password,
+							name: name,
+							lastname: lastname,
+						}),
+						headers: {
+							"Content-Type": "application/json"
+						}
+					});
+					const data = await response.json();
+					console.log(data)
+
+					if (response.ok) {
+
+						console.log('Respuesta recibida:', data);
+						localStorage.setItem("jwt-token", data.access_token);
+						setStore({ token: data.access_token });
+						return true;
+					}
+
+					else {
+						console.log("Login failed:", data.message);
+						return false;
+					}
+				} catch (e) {
+					console.log("Error durante el registro:", e);
+					return false;
+				}
+			},
+
+			
 
 
 			getCharacters: async () => {
@@ -87,8 +133,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({
 					phothocharacters: data
 				})
-
-
 			},
 
 			getVehiclesInfo: async (uid) => {
@@ -136,32 +180,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ charactersfavorist: result })
 			},
 
-
-
 			deleteVehicles: (name) => {
 				let store = getStore()
 				const result = store.vehiclesfavorist.filter((favorito) => (favorito != name));
 				setStore({ vehiclesfavorist: result })
 			},
 
-
-
-
-
 			deletePlanets: (name) => {
 				let store = getStore()
 				const result = store.planetsfavorist.filter((favorito) => (favorito != name));
 				setStore({ planetsfavorist: result })
 			},
-
-
-
-
-
-
-
-
-
 
 		}
 	};

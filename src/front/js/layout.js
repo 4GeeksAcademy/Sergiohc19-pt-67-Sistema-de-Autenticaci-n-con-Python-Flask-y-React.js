@@ -5,6 +5,7 @@ import { BackendURL } from "./component/backendURL";
 import injectContext from "./store/appContext";
 
 import { Login } from "./views/login";
+import { Registro } from "./views/registro";
 import { Home } from "./views/home";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -26,6 +27,7 @@ const Layout = () => {
 					<Navbar />
 					<Routes>
 						<Route path="/" element={<Login />} />
+						<Route path="/registro" element={<Registro />} />
 						<Route path="/home" element={<Home />} />
 						<Route path="/charactersInfo/:uid" element={<CharactersInfo />} />
 						<Route path="/vehiclesInfo/:uid" element={<VehiclesInfo />} />

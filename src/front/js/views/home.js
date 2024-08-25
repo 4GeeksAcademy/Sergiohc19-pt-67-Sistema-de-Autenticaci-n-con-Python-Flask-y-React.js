@@ -6,10 +6,11 @@ import { Context } from "../store/appContext.js";
 import { CharactersInfo } from "./charactersInfo.js";
 import { VehiclesInfo } from "./vehiclesInfo.js"
 import { PlanetsInfo } from "./planetsInfo.js"
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
     const { store, actions } = useContext(Context);
-    const [like, setLike] = useState(false)
+   
 
 
 

@@ -117,11 +117,10 @@ body {
     color: red;
 }
 
-.form-login{
+.inputs{
     margin-top: 50px;
     color: white;
     display: flex;
-    flex-direction: column;
     margin: auto;
     width: 25rem;
 }

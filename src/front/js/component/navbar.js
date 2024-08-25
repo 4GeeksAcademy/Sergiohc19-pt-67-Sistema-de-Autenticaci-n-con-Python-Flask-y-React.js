@@ -5,6 +5,9 @@ import { Context } from "../store/appContext";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
+
+
+
 	return (
 		<nav className="navbar-light rounded-5 rounded-top border border-warning-subtle">
 			<div className="navbar">
